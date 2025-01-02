@@ -1,3 +1,19 @@
+.shipments {
+    layout: masonry;
+}
+
+/*@media (min-width: 480px) {*/
+/*    .shipments {*/
+/*        grid-template-columns: 1fr 1fr;*/
+/*    }*/
+/*}*/
+
+/*@media (min-width: 768px) {*/
+/*    .shipments {*/
+/*        grid-template-columns: 1fr 1fr 1fr;*/
+/*    }*/
+/*}*/
+
 
 .banner img {
     height: 80px;
@@ -41,4 +57,23 @@ a:focus,
 a:hover {
     text-decoration-style: wavy;
     text-decoration-skip-ink: none;
+}
+
+.navbar {
+    z-index: 42069;
+    /*overflow: hidden;*/
+    background-color: var(--sunken);
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+.navbar-brand {
+    margin-left: 140px;
+    color: black;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }

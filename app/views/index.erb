@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card sunken">
+  <h1>what's <%= @internal ? "their" : "your" %> email?</h1>
+  <form action="<%= @internal ? '/dyn/internal' : '/dyn/send_mail' %>" method="post">
+    <input type="email" placeholder="orpheus@hackclub.com" id="email" name="email" style="margin-top: var(--spacing-3)" required="required"> <br/>
+    <input class="button" type="submit" style="margin-top: var(--spacing-2);" value="go!">
+  </form>
+  </div>
+  <% if @internal %>
+    <a href="/set_internal_key">set internal key?</a>
+  <% end %>
+</div>

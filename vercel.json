@@ -1,0 +1,37 @@
+{
+  "builds": [
+    {
+      "src": "config.ru",
+      "use": "@vercel/ruby"
+    },
+    {
+      "src": "vercel-build.sh",
+      "use": "@vercel/static-build",
+      "config": {"distDir": "build"}
+    }
+  ],
+  "rewrites": [
+    { "source": "/config.ru", "destination": "404" },
+    { "source": "/dyn/:path*", "destination": "config.ru" },
+    { "source": "/api/presign", "destination": "config.ru" },
+    { "source": "/(.*)", "destination": "404", "statusCode": 404 }
+  ],
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/shipments",
+      "has": [
+        {
+          "type": "query",
+          "key": "email"
+        },
+        {
+          "type": "query",
+          "key": "signature"
+        }
+      ],
+      "destination": "/dyn/shipments/:email?signature=:signature",
+      "permanent": true
+    }
+  ]
+}

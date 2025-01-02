@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shipment Viewer <%= @title && " – #{@title}" %></title>
+  <link rel="stylesheet" href="/hc.css">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://kit.fontawesome.com/384fa9fca2.js" crossorigin="anonymous"></script>
+  <%= yield_content :head %>
+  <script>
+      // The poor man's jQuery
+      window.$ = (query, el=document)=>{
+          return el.querySelector(query);
+      };
+      window.$all = (query, el=document)=>{
+          return [...el.querySelectorAll(query)];
+      };
+  </script>
+</head>
+<body>
+<nav class="navbar fixed-top bg-light">
+  <a class="banner" target="_blank" href="https://hackclub.com/">
+    <img src="https://assets.hackclub.com/flag-orpheus-top.svg" />
+  </a>
+  <a href='<%= @internal ? '/internal' : '/' %>' class="navbar-brand">Shipment Viewer</a>
+</nav>
+<div style="margin-top: 64px">
+<% if @error %>
+<div class="container">
+  <div class="card" style="background: var(--orange); margin-bottom: var(--spacing-2); color: var(--white)">
+    <b>error:</b> <%= @error %>
+  </div>
+</div>
+<% end %>
+<%= yield %>
+</div>
+</body>
+</html>

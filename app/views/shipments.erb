@@ -1,0 +1,29 @@
+<% content_for :head do %>
+  <script src="https://cdn.jsdelivr.net/npm/macy@2.5.1"></script>
+<% end %>
+<div class="container">
+  <% if @shipments.empty? %>
+    <img src="https://cloud-m5nxd8r27-hack-club-bot.vercel.app/0cleanshot_2025-01-02_at_14.18.09_2x.png" alt="no shipments?">
+  <% else %>
+    <div class="shipments" id="shipments-container">
+      <%# for each shipment, render the partial _shipment.erb: %>
+      <% @shipments.each do |shipment, i| %>
+        <%= erb :_shipment, locals: { shipment: } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+    var macy = Macy({
+        container: '#shipments-container',
+        trueOrder: true,
+        waitForImages: false,
+        margin: 20,
+        columns: 3,
+        breakAt: {
+            940: 2,
+            700: 1,
+        }
+    });
+</script>
