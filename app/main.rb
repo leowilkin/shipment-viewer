@@ -105,6 +105,6 @@ class ShipmentViewer < Sinatra::Base
   end
 
   error do
-    bounce_to_index! "env['sinatra.error'].message (request ID: #{request.env['HTTP_X_VERCEL_ID'] || "idk lol"})"
+    bounce_to_index! "#{env['sinatra.error'].message} (request ID: #{request.env['HTTP_X_VERCEL_ID'] || "idk lol"})"
   end
 end
