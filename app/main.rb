@@ -94,7 +94,7 @@ class ShipmentViewer < Sinatra::Base
 
   post '/api/presign' do
     request.body.rewind
-    unless request.env["HTTP_AUTHORIZATION"] && ENV["PRESIGNING_KEYS"]&.split(',').include?(cookies[:internal_key])
+    unless request.env["HTTP_AUTHORIZATION"] && ENV["PRESIGNING_KEYS"]&.split(',').include?(request.env["HTTP_AUTHORIZATION"])
       bounce_to_index! "not the right key ya goof"
     end
     gen_url request.body.read
