@@ -12,7 +12,7 @@ the constant "why do my high seas orders not show up in there?" -> "because it d
 
 PLEASE
 
-airtable creds with read-only access to mock data are in `.env.test`, if you need test cases that aren't covered included pls poke me!
+airtable creds with read-only access to [mock data](http://localhost:9292/dyn/shipments/orpheus@hackclub.com?signature=584feeae7886af0d493bfeda25fff61d7e88df98616d198d757e169151d44295) are in `.env.test`, if you need test cases that aren't covered included pls poke me!
 
 `bundle install` and `dotenvx run -f .env.test -- bundle exec rackup` are probably your friends.
 
