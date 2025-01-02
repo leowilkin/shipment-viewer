@@ -9,9 +9,8 @@ def get_shipments_for_user(email)
 end
 
 def user_has_any_shipments?(email)
-  res = false
   SHIPMENT_TYPES.each do |type|
-    res |= type.check_for_any_by_email email
+    return true if type.check_for_any_by_email email
   end
-  res
+  false
 end
