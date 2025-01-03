@@ -103,7 +103,7 @@ class WarehouseShipment < Shipment
   end
 
   def title_text
-    fields["user_facing_title"] || fields["Request Type"].join(', ')
+    fields["user_facing_title"] || fields["Request Type"]&.join(', ') || "Who knows?"
   end
 
   def date
