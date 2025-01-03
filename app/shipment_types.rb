@@ -50,11 +50,11 @@ class Shipment < Norairrecord::Table
   end
 
   def source_url
-    fields["source_rec_url"]["url"]
+    fields["source_rec_url"]&["url"]
   end
 
   def source_id
-    source_url.split('/').last
+    source_url&.split('/').last
   end
 
   def icon
