@@ -48,9 +48,9 @@ class Shipment < Norairrecord::Table
   def status_text
     "error fetching status! poke nora"
   end
-
+  
   def source_url
-    fields["source_rec_url"]&["url"]
+    fields.dig("source_rec_url", "url")
   end
 
   def source_id
