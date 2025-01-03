@@ -14,6 +14,7 @@ class Shipment < Norairrecord::Table
   class << self
     def records(**args)
       return [] unless table_name
+      raise "don't use Shipment directly!" unless self < Shipment
       super
     end
     def base_key
