@@ -147,6 +147,7 @@ class WarehouseShipment < Shipment
 
   def icon
     return "🎁" if hide_contents? || title_text.start_with?("High Seas – Free")
+    return "💵" if fields['Request Type']&.include?("Boba Drop grant")
     return "✉️" if fields["Warehouse–Service"]&.include?("First Class")
     "📦"
   end
