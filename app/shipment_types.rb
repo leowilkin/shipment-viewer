@@ -25,12 +25,12 @@ class Shipment < Norairrecord::Table
 
     def find_by_email(email)
       raise ArgumentError, "no email?" if email.nil? || email.empty?
-      records :filter => "LOWER({#{self.email_column}})='#{email.downcase}'"
+      records :filter => "LOWER(TRIM({#{self.email_column}}))='#{email.downcase}'"
     end
 
     def check_for_any_by_email(email)
       raise ArgumentError, "no email?" if email.nil? || email.empty?
-      records(:filter => "LOWER({#{self.email_column}})='#{email.downcase}'", fields: [], max_records: 1).any?
+      records(:filter => "LOWER(TRIM({#{self.email_column}}))='#{email.downcase}'", fields: [], max_records: 1).any?
     end
   end
 
