@@ -37,7 +37,7 @@
   <div class="footer">
     <div class="footer-text">
       <% if @internal %>
-      <p><%= ["don't do anything i wouldn't do", "agent 47! welcome!", "i ship it :3"].sample %></p>
+        <span class="internal" style="padding: 4px !important;"><%= ENV['STATIC_BUILD'] ? "i'm kind of like if shipments had a viewer" : ["don't do anything i wouldn't do", "agent 47! welcome!", "i ship it :3", "i'm kind of like if shipments had a viewer", '🎶 "shipment viewer", definition: views some hack club mailings 🎵', "to continue using, please #{%w(meow bark woof nya~ scream).sample} as loudly as you can.", 'if a package is from us does that make it a hackage?'].sample %></span>
       <% end %>
       <p>with <3 from <a target="_blank" href="https://hackclub.com/">Hack Club</a>! open-source'd&nbsp@&nbsp<a target="_blank" href="https://github.com/hackclub/shipment-viewer">hackclub/shipment-viewer</a>&nbsp<i class="fa-brands fa-github"></i> (<%= footer_commit %>)</p>
     </div>
