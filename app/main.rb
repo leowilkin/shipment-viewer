@@ -15,6 +15,14 @@ class ShipmentViewer < Sinatra::Base
 
   set :host_authorization, permitted_hosts: []
 
+  def footer_commit
+    @footer_commit ||= if ENV['VERCEL_GIT_COMMIT_SHA']
+                         "rev #{ENV['VERCEL_GIT_COMMIT_SHA'][...7]}"
+                       else
+                         "development!"
+                       end
+  end
+
   def gen_url(email)
     "#{ENV['BASE_URL']}/dyn/shipments/#{email}?signature=#{sign(email)}"
   end
