@@ -2,6 +2,15 @@
   <script src="https://cdn.jsdelivr.net/npm/macy@2.5.1"></script>
 <% end %>
 <div class="container">
+  <% if @internal %>
+    <div class="card internal" style="margin-bottom: var(--spacing-3); display: flex; justify-content: space-between; align-items: center;">
+      <h3>Viewing shipments for: <%= params[:email] %></h3>
+      <form action="/dyn/send_mail" method="post" style="display: inline;">
+        <input type="hidden" name="email" value="<%= params[:email] %>">
+        <button type="submit" class="button">Send Email</button>
+      </form>
+    </div>
+  <% end %>
   <% if @shipments.empty? %>
     <img src="https://cloud-m5nxd8r27-hack-club-bot.vercel.app/0cleanshot_2025-01-02_at_14.18.09_2x.png" alt="no shipments?">
   <% else %>
