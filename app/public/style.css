@@ -97,7 +97,12 @@ a:hover {
 .internal {
     border: 1.5px dashed orange;
     border-radius: var(--radii-extra);
-    padding-left: 3px;
+}
+
+span.internal {
+    border-radius: 8px;
+    padding: 3px 2px;
+
 }
 
 @media (max-width: 768px) {

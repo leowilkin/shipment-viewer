@@ -32,6 +32,6 @@
   <br/><span>📅 Created on <%= shipment.date[..9] %></span>
   <% if @show_ids %>
     <br/>
-    👀 <span class="internal" style="border-radius: 8px; padding: 3px">Airtable: <%= external_link(shipment.source_id, shipment.source_url) %></span>
+    👀 <span class="internal">Airtable: <%= external_link(shipment.source_id, shipment.source_url) %></span>
   <% end %>
 </div>
