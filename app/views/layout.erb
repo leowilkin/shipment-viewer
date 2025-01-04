@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shipment Viewer <%= @title && " – #{@title}" %></title>
+  <title>Shipment Viewer <%= " – #{@title}" if @title %></title>
   <link rel="stylesheet" href="/hc.css">
   <link rel="stylesheet" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
     <a class="banner" target="_blank" href="https://hackclub.com/">
       <img src="/flag.png" />
     </a>
-    <a href='<%= @internal ? '/internal' : '/' %>' class="navbar-brand"><b>Shipment Viewer<%= @internal && " <span class='internal'>(cool edition)</span>" %></b></a>
+    <a href='<%= @internal ? '/internal' : '/' %>' class="navbar-brand"><b>Shipment Viewer<%= " <span class='internal'>(cool edition)</span>" if @internal %></b></a>
   </nav>
   <div style="margin-top: 64px">
     <% if @error %>
