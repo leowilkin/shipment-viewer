@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shipment Viewer <%= @title && " – #{@title}" %></title>
+  <title>Shipment Viewer <%= " – #{@title}" if @title %></title>
   <link rel="stylesheet" href="/hc.css">
   <link rel="stylesheet" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
     <a class="banner" target="_blank" href="https://hackclub.com/">
       <img src="/flag.png" />
     </a>
-    <a href='<%= @internal ? '/internal' : '/' %>' class="navbar-brand"><b>Shipment Viewer<%= @internal && " <span class='internal'>(cool edition)</span>" %></b></a>
+    <a href='<%= @internal ? '/internal' : '/' %>' class="navbar-brand"><b>Shipment Viewer<%= " <span class='internal'>(cool edition)</span>" if @internal %></b></a>
   </nav>
   <div style="margin-top: 64px">
     <% if @error %>
@@ -37,7 +37,7 @@
   <div class="footer">
     <div class="footer-text">
       <% if @internal %>
-      <p><%= ["don't do anything i wouldn't do", "agent 47! welcome!", "i ship it :3"].sample %></p>
+        <span class="internal" style="padding: 4px !important;"><%= ENV['STATIC_BUILD'] ? "i'm kind of like if shipments had a viewer" : ["don't do anything i wouldn't do", "agent 47! welcome!", "i ship it :3", "i'm kind of like if shipments had a viewer", '🎶 "shipment viewer", definition: views some hack club mailings 🎵', "to continue using, please #{%w(meow bark woof nya~ scream).sample} as loudly as you can.", 'if a package is from us does that make it a hackage?'].sample %></span>
       <% end %>
       <p>with <3 from <a target="_blank" href="https://hackclub.com/">Hack Club</a>! open-source'd&nbsp@&nbsp<a target="_blank" href="https://github.com/hackclub/shipment-viewer">hackclub/shipment-viewer</a>&nbsp<i class="fa-brands fa-github"></i> (<%= footer_commit %>)</p>
     </div>
