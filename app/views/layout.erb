@@ -39,15 +39,17 @@
       <i class="fa-solid fa-moon"></i>
     </button>
   </nav>
-  <div style="margin-top: 64px">
-    <% if @error %>
-      <div class="container">
-        <div class="card" style="background: var(--orange); margin-bottom: var(--spacing-2); color: var(--white)">
-          <b>error:</b> <%= @error %>
+  <div class="main-content">
+    <div style="margin-top: 64px">
+      <% if @error %>
+        <div class="container">
+          <div class="card" style="background: var(--orange); margin-bottom: var(--spacing-2); color: var(--white)">
+            <b>error:</b> <%= @error %>
+          </div>
         </div>
-      </div>
-    <% end %>
-    <%= yield %>
+      <% end %>
+      <%= yield %>
+    </div>
   </div>
   <div class="footer">
     <div class="footer-text">

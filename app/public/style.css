@@ -51,6 +51,14 @@
 
 body {
     font-family: 'Phantom Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.main-content {
+    flex: 1;
 }
 
 body.dark-mode {
@@ -129,9 +137,9 @@ a:hover {
 .footer {
     z-index: 42060;
     background-color: var(--sunken);
-    position: fixed;
-    bottom: 0;
-    width: 100%
+    width: 100%;
+    padding: 14px 16px;
+    text-align: center;
 }
 
 .footer-text {
