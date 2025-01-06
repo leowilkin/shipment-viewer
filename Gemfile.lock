@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     base64 (0.2.0)
+    concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     faraday (2.12.1)
       faraday-net_http (>= 2.0, < 3.5)
@@ -60,6 +61,7 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  concurrent-ruby (~> 1.3)
   faraday (~> 2.12)
   norairrecord (~> 0.1.4)
   puma (~> 6.5)

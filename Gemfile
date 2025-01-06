@@ -13,3 +13,5 @@ group :serve do
   gem "puma", "~> 6.5"
 end
 gem "faraday", "~> 2.12"
+
+gem "concurrent-ruby", "~> 1.3"
