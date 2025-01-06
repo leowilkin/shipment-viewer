@@ -11,8 +11,7 @@
         <button type="submit" class="button">Send Email</button>
       </form>
     </div>
-  <% end %>
-  <% if not @internal %>
+  <% else %>
     <div class="card" style="margin-bottom: var(--spacing-3); display: flex; justify-content: space-between; align-items: center;">
       <span>You're signed in as <a href="mailto:<%= params[:email] %>"><%= params[:email] %></a> 👋🏻</span>
       <a href="/"><button type="submit" class="button">Not you?</button></a>
