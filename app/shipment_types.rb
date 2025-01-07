@@ -117,6 +117,8 @@ class WarehouseShipment < Shipment
       "sent to warehouse..."
     when "mailed"
       "shipped!"
+    when "ON_HOLD"
+      "on hold... contact us for more info!"
     else
       "this shouldn't happen."
     end
