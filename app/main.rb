@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require "sinatra/content_for"
 require "sinatra/cookies"
+require 'securerandom'
 
 require_relative './awawawa'
 require_relative './signage'
@@ -113,7 +114,9 @@ class ShipmentViewer < Sinatra::Base
   end
 
   error do
-    bounce_to_index! "#{env['sinatra.error'].message} (request ID: #{request.env['HTTP_X_VERCEL_ID'] || "idk lol"})"
+    req_id = SecureRandom.urlsafe_base64(20)
+    puts "LOGGING REQUEST ID: #{req_id}"
+    bounce_to_index! "#{env['sinatra.error'].message} (request ID: #{req_id})"
   end
 
   get '/shipments' do
