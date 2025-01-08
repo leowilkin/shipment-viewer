@@ -115,4 +115,16 @@ class ShipmentViewer < Sinatra::Base
   error do
     bounce_to_index! "#{env['sinatra.error'].message} (request ID: #{request.env['HTTP_X_VERCEL_ID'] || "idk lol"})"
   end
+
+  get '/shipments' do
+    email = params['email']
+    signature = params['signature']
+
+    if email && signature
+      redirect to("/dyn/shipments/#{email}?signature=#{signature}"), 301
+    else
+      bounce_to_index! "lol wut"
+    end
+  end
+
 end
