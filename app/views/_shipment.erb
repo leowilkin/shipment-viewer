@@ -29,9 +29,16 @@
     <% end %>
   <% end %>
   <br/>
-  <br/><span>📅 Created on <%= shipment.date[..9] %></span>
   <% if @show_ids %>
     <br/>
     👀 <span class="internal">Airtable: <%= external_link(shipment.source_id, shipment.source_url) %></span>
+  <% end %>
+  <br/><span>📅 Created on <%= shipment.date[..9] %></span>
+  <% if @internal and shipment.internal_info_partial %>
+    <br/>
+    <div class="internal" style="padding: 5px">
+      <b>🤫 internal info:</b><br/>
+      <%= erb shipment.internal_info_partial, locals: { shipment: } %>
+    </div>
   <% end %>
 </div>

@@ -15,3 +15,7 @@ end
 gem "faraday", "~> 2.12"
 
 gem "concurrent-ruby", "~> 1.3"
+
+gem "activesupport", "~> 8.0"
+
+gem "redcarpet", "~> 3.6"

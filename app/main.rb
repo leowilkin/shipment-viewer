@@ -2,7 +2,10 @@ require 'sinatra/base'
 require "sinatra/content_for"
 require "sinatra/cookies"
 require 'securerandom'
+require 'active_support'
+require 'active_support/core_ext/object/blank'
 
+require_relative './helpers'
 require_relative './awawawa'
 require_relative './signage'
 
@@ -13,6 +16,9 @@ end
 class ShipmentViewer < Sinatra::Base
   helpers Sinatra::ContentFor
   helpers Sinatra::Cookies
+  helpers Sinatra::RenderMarkdownHelper
+  helpers Sinatra::SchmoneyHelper
+  helpers Sinatra::IIHelper
 
   set :host_authorization, permitted_hosts: []
 
