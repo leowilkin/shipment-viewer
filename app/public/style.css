@@ -51,6 +51,63 @@
 
 body {
     font-family: 'Phantom Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.main-content {
+    flex: 1;
+}
+
+body.dark-mode {
+    background-color: var(--dark);
+    color: var(--snow);
+}
+
+body.dark-mode a {
+    color: var(--smoke);
+}
+
+body.dark-mode .navbar,
+body.dark-mode .footer {
+    background-color: var(--darkless);
+}
+
+body.dark-mode .card {
+    background: var(--steel);
+    color: var(--smoke);
+}
+
+body.dark-mode .navbar-brand {
+    color: var(--smoke);
+}
+
+body.dark-mode p {
+    color: var(--smoke);
+}
+
+#dark-mode-toggle {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    size: 1.5em;
+}
+
+body.dark-mode #dark-mode-toggle  {
+    background-color: var(--dark);
+}
+
+#dark-mode-toggle .fa-moon {
+    color: var(--steel);
+}
+
+body.dark-mode #dark-mode-toggle .fa-moon {
+    color: var(--smoke);
 }
 
 a:focus,
@@ -80,14 +137,13 @@ a:hover {
 .footer {
     z-index: 42060;
     background-color: var(--sunken);
-    position: fixed;
-    bottom: 0;
-    width: 100%
+    width: 100%;
+    padding: 14px 16px;
+    text-align: center;
 }
 
 .footer-text {
     margin-left: 15px;
-    color: black;
     float: left;
     display: block;
     padding: 14px 16px;

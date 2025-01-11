@@ -1,7 +1,11 @@
 require 'sinatra/base'
 require "sinatra/content_for"
 require "sinatra/cookies"
+require 'securerandom'
+require 'active_support'
+require 'active_support/core_ext/object/blank'
 
+require_relative './helpers'
 require_relative './awawawa'
 require_relative './signage'
 
@@ -12,12 +16,15 @@ end
 class ShipmentViewer < Sinatra::Base
   helpers Sinatra::ContentFor
   helpers Sinatra::Cookies
+  helpers Sinatra::RenderMarkdownHelper
+  helpers Sinatra::SchmoneyHelper
+  helpers Sinatra::IIHelper
 
   set :host_authorization, permitted_hosts: []
 
   def footer_commit
-    @footer_commit ||= if ENV['VERCEL_GIT_COMMIT_SHA']
-                         "rev #{ENV['VERCEL_GIT_COMMIT_SHA'][...7]}"
+    @footer_commit ||= if ENV['SOURCE_COMMIT']
+                         "rev #{ENV['SOURCE_COMMIT'][...7]}"
                        else
                          "development!"
                        end
@@ -113,6 +120,20 @@ class ShipmentViewer < Sinatra::Base
   end
 
   error do
-    bounce_to_index! "#{env['sinatra.error'].message} (request ID: #{request.env['HTTP_X_VERCEL_ID'] || "idk lol"})"
+    req_id = SecureRandom.urlsafe_base64(20)
+    puts "LOGGING REQUEST ID: #{req_id}"
+    bounce_to_index! "#{env['sinatra.error'].message} (request ID: #{req_id})"
   end
+
+  get '/shipments' do
+    email = params['email']
+    signature = params['signature']
+
+    if email && signature
+      redirect to("/dyn/shipments/#{email}?signature=#{signature}"), 301
+    else
+      bounce_to_index! "lol wut"
+    end
+  end
+
 end

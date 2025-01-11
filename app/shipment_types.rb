@@ -93,6 +93,10 @@ class Shipment < Norairrecord::Table
       source_record: source_url
     }.compact.to_json
   end
+
+  def internal_info_partial
+    nil
+  end
 end
 
 class WarehouseShipment < Shipment
@@ -117,6 +121,8 @@ class WarehouseShipment < Shipment
       "sent to warehouse..."
     when "mailed"
       "shipped!"
+    when "ON_HOLD"
+      "on hold... contact us for more info!"
     else
       "this shouldn't happen."
     end
@@ -167,6 +173,10 @@ class WarehouseShipment < Shipment
     rescue JSON::ParserError
       "error parsing JSON for #{source_id}!"
     end
+  end
+
+  def internal_info_partial
+    :_warehouse_internal_info
   end
 end
 
@@ -237,6 +247,10 @@ class HighSeasShipment < Shipment
 
   def shipped?
     fields['status'] == 'fulfilled'
+  end
+
+  def internal_info_partial
+    :_highseas_internal_info
   end
 end
 

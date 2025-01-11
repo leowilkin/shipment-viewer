@@ -1,0 +1,4 @@
+{
+    "name": "Shipment Viewer Codespace",
+    "postCreateCommand": "./install-tools.sh"
+}

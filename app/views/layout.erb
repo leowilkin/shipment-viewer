@@ -15,6 +15,18 @@
       window.$all = (query, el=document)=>{
           return [...el.querySelectorAll(query)];
       };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        toggle.addEventListener('click', () => {
+          body.classList.toggle('dark-mode');
+          localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
+        });
+        if (localStorage.getItem('dark-mode') === 'true') {
+          body.classList.add('dark-mode');
+        }
+      });
   </script>
 </head>
 <body>
@@ -23,16 +35,21 @@
       <img src="/flag.png" />
     </a>
     <a href='<%= @internal ? '/internal' : '/' %>' class="navbar-brand"><b>Shipment Viewer<%= " <span class='internal'>(cool edition)</span>" if @internal %></b></a>
+    <button id="dark-mode-toggle" class="">
+      <i class="fa-solid fa-moon"></i>
+    </button>
   </nav>
-  <div style="margin-top: 64px">
-    <% if @error %>
-      <div class="container">
-        <div class="card" style="background: var(--orange); margin-bottom: var(--spacing-2); color: var(--white)">
-          <b>error:</b> <%= @error %>
+  <div class="main-content">
+    <div style="margin-top: 64px">
+      <% if @error %>
+        <div class="container">
+          <div class="card" style="background: var(--orange); margin-bottom: var(--spacing-2); color: var(--white)">
+            <b>error:</b> <%= @error %>
+          </div>
         </div>
-      </div>
-    <% end %>
-    <%= yield %>
+      <% end %>
+      <%= yield %>
+    </div>
   </div>
   <div class="footer">
     <div class="footer-text">
