@@ -165,7 +165,6 @@ class WarehouseShipment < Shipment
   def description
     return "it's a surprise!" if hide_contents?
     begin
-      puts "awa#{source_id}"
       fields['user_facing_description'] ||
         fields["Warehouse–Items Shipped JSON"] && JSON.parse(fields["Warehouse–Items Shipped JSON"]).select {|item| (item["quantity"]&.to_i || 0) > 0}.map do |item|
           "#{item["quantity"]}x #{item["name"]}"
