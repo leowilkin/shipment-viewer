@@ -32,6 +32,7 @@ module Sinatra
         link_shoporders(text)
         link_qm_orders(text)
         link_arcade_orders(text)
+        text
       end
     end
     def md(markdown)
