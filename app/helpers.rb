@@ -14,7 +14,6 @@ module Sinatra
         text.gsub! /Shop order (rec\w+)/ do
           pretty_shop_link $1
         end
-        text
       end
 
       def link_shoporders(text)
@@ -22,9 +21,17 @@ module Sinatra
           pretty_shop_link $1
         end
       end
+
+      def link_arcade_orders(text)
+        text.gsub! /\(arcade:orders:(rec\w+)\)/ do
+          "Arcade order [#{$1}](https://airtable.com/app4kCWulfB02bV8Q/tblNUDETwMdUlBCSM/#{$1})"
+        end
+      end
+
       def preprocess(text)
         link_shoporders(text)
         link_qm_orders(text)
+        link_arcade_orders(text)
       end
     end
     def md(markdown)
