@@ -45,8 +45,9 @@ module Sinatra
     end
   end
   module IIHelper
-    def render_ii(shipment, field, emoji, description, representation=nil)
+    def render_ii(shipment, field, emoji, description, representation=nil, nilify=true)
       return unless shipment[field]
+      return if nilify && shipment[field] == 0
       "<br/><abbr title='#{description}'>#{emoji}</abbr>: #{representation&.call(shipment) || shipment[field]}"
     end
   end
