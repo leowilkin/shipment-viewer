@@ -1,10 +1,34 @@
+require 'active_support'
 require 'active_support/number_helper'
 require 'redcarpet'
 
 module Sinatra
   module RenderMarkdownHelper
+    class SVFlavoredMarkdown < Redcarpet::Render::HTML
+      def pretty_shop_link(rec)
+        "HS/LS order [#{rec}](https://airtable.com/appTeNFYcUiYfGcR6/tbl7Dj23N5tjLanM4/viwlw4aoTSsxC4KBA/#{rec})"
+      end
+
+      def link_qm_orders(text)
+        return text unless text.start_with? 'QM:'
+        text.gsub! /Shop order (rec\w+)/ do
+          pretty_shop_link $1
+        end
+        text
+      end
+
+      def link_shoporders(text)
+        text.gsub! /<ShopOrder id='(\w+)'>/ do
+          pretty_shop_link $1
+        end
+      end
+      def preprocess(text)
+        link_shoporders(text)
+        link_qm_orders(text)
+      end
+    end
     def md(markdown)
-      (@renderer ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)).render(markdown)
+      (@renderer ||= Redcarpet::Markdown.new(SVFlavoredMarkdown, autolink: true, tables: true)).render(markdown)
     end
   end
   module SchmoneyHelper
